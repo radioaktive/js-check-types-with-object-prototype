@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<p>Please input a 2 numbers: </p>
+
+	<input id="inputLeft" type="text">
+	<input id="inputRight" type="text">
+	<button type="button" onclick="main()">sum inputs</button>
+	<p>Sum:</p>
+	<p id="p01"></p>
+</body>
+<script>
+	function main(){
+		var inputLeft, inputRight, outputSum;
+		outputSum = document.getElementById("p01");
+		outputSum.innerHTML = "";
+		inputLeft = document.getElementById("inputLeft").value;
+		inputRight = document.getElementById("inputRight").value;
+
+		console.log(Object.prototype.toString.call(inputLeft));
+		console.log(Object.prototype.toString.call(inputRight));
+		numberLeft = Number(inputLeft);
+		numberRight = Number(inputRight);
+		//numberRight = '55';
+		//numberRight = '';
+		console.log(numberLeft);
+		console.log(numberRight);
+		console.log(Object.prototype.toString.call(numberLeft));
+		console.log(Object.prototype.toString.call(numberRight));
+		console.log(Object.prototype.toString.call(NaN));
+
+		function add(left, right)
+		{
+			var result = 'null';
+			try
+			{
+				// Object.prototype.toString.call(NaN) returns "[object Number]" !!!! , isNaN check is obligative!
+				// isNaN('Hello') returns true, isNaN(123) returns false, isNaN('123') returns false!!!!!  ,
+				// so need to check type by  typeof or  Object.prototype.toString.call(left)
+				if ((Object.prototype.toString.call(left) !== "[object Number]" || isNaN(left))||
+				(Object.prototype.toString.call(right) !== "[object Number]" || isNaN(right)))
+				{
+					throw "ERROR : Parameter is not a number!"
+				}
+				result = left + right;
+			}
+			catch(error)
+			{
+				console.log(error);
+				alert("Input is " + error);
+			}
+			return result;
+		}
+
+		var res = add(numberLeft, numberRight);
+		console.log(res);
+		outputSum.innerHTML = JSON.stringify(res);
+	}
+</script>
+</html>
